@@ -1,0 +1,130 @@
+void 
+
+    while (!finished) {
+	cout << "tast a b eller c"
+	switch (c) {
+	case "a":
+		oppgave2a()
+	default:
+
+-|-|-|-|-|-|-PARAMETER OG RETURVERDI-|-|-|-|-|-|-
+
+int getGuess(int min, int max);
+HVA ER DETTTE???? Parameteren er "Call by value"
+Også: Call by reference eller point
+Brukes for å returnere resultater
+int ...
+&a er en referanse til variabler.
+
+# er en skigard
+#include <bibliotek> // for eksempel <iostream> eller <cmath>
+
+-|-|-|- Tilfeldige tall-|-|-|- (PSEUDO-tilfeldige) rand og srand
+#include <cstdlib>
+int rand(); heltall fra og med 0 til rand_max som man ikke setter selv
+rand() %10 //området [0,...,9]
+Forskyve: (rand() %10) + 1 //1-10
+
+void srand(int seed);
+Brukes til feilfinning fordi med samme seed får man samme rekke "tilfeldige tall" hver gang
+
+<ctime> returnerer antall sekunder siden første januar 1970
+int main(); {
+	setlocale(LC_ALL, "Norwegian");
+	srand(static_cast<unsigned int>(time(NULL)));
+	int secret = (rand) %10) + 1
+	int guess = 0
+	int count = 0;
+	while (guess != secret) {
+		guess = getGuess
+		count++
+		cout
+
+int getGuess(int min, int max) {
+	itn temp = 0
+	do {...} while (temp < min || temp > max)
+-
+Topp-ned-presentasjon
+// Deklarerer
+int getGuess()
+void printGuess()
+
+main
+
+fullstendig implementasjon av getGuess and printguess
+-
+
+-|-|-|-|-Scope-|-|-|-|-
+starter der variabel blir deklarert og slutter der blokken den er definert i slutter
+En funksjonsimplementasjon er en egen blokk
+
+Bruk mest mulig lokale, færrest mulig globale!
+Debuggeren viser verdien av variabler og kan hjelpe med å fikse feil i scope
+
+liten funksjon akkumuler gjør:
+	sum+=i //men bruker call by value => sum har bare scope innad i funksjonen
+
+--Param_VR.cpp
+To funksjoner som får skrevet inn to tall
+Value: a og reference: &a
+Call by value: variablene bevares ikke når lille programmet slutter
+Call by reference:  (int &a, int &b) Endrer "globalt"
+Fra toppliste: Debug -> Stop degubbing
+
+static variables bevares inni programmet hvis du teller den opp? Selv når programmet avsluttes og kalles igjen. Right?
+
+-|-|-|-|-Pekere-|-|-|-|-
+Lavnivå programmering. Vet akkurat hvor en variabel er laget.
+Ulike brukere har forskjellig behov for mengden data de ønsker å lage på nett. Dynamisk. Pekere brukes.
+stl er et bibliotek som skjuler pekere.
+peker *syntaks
+int hoyde = 5
+int *hoydePeker = hoyde
+int  *pekerTilIngenting = nullptr
+en ikke-visualisert pekervariabel spyr en variabel du setter inn til et tilfeldig sted
+Call by pointer! int anyfunction(int*)
+
+-|-|-|-|-SWAP-|-|-|-|-
+Bytte to verdier
+
+void mySwap(int *a, int b*){
+	int temp = *a
+	*a = *b
+	*b = temp
+    main() {
+	mySwap(&a,&b)
+eller man kan bruke call by reference
+
+int anyfunction(const itn &a) Konstante variabler er read-only
+
+-|-|-|-|-Overlagring-|-|-|-|-
+En funksjons signatur: navn og parameterliste
+Samme funksjon kan ha to forskjellige signaturer med forskjellige parameterlister 
+TO eller flere funksjoner kan ha samme navn hvis den har forskjellige parameterlister, kalles overlagring
+beregn volum med ferdig satt bredde og høyde kan kalles med (len), (len,bred), (len,bred,hoyde)
+
+// Spavanac
+#include <iostream>
+using namespace std;
+
+int main() {
+	int hour, min;
+	cin >> hour >> min
+	if (min == 0) {
+		if (hour == 0)
+			hour = 23
+		else
+			hour--;
+		min = 15;
+}
+	if (min > 44)
+		min -= 45
+	else {
+		if (hour == 0)
+			hour = 23
+		else
+			hour--;
+		min = 60-(45-min)
+}
+	cout << hour << min
+}

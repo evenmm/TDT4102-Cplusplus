@@ -1,0 +1,125 @@
+--------------GRUNNTEORI -------------------
+main kjøres alltid først, er alltid int
+Hvis man ikke ender med semikolon vil C++ tolke neste linje som en fortsettelse av forrige
+setlocale(LC_ALL, "norwegian");
+Call-by-reference: funksjoner implementeres med & foran parameterne (og kalles med *this...)
+Aldri bruk x som dummy-iterasjonsvariabel når det er snakk om x-verdier i tillegg
+cin tar vare på bokstaver som blir til overs
+
+----------- ARRAYS -----------------
+Bruke array som parameter: Man sender det alltid som en peker uten å bruke peker-syntaks.
+int myarray[40] = {1,2,3};			//Initialiseerer Array
+Alle arrays initieres med 0 som verdi for udefinerte
+void procedure(int myArgumentArray[]) {...}	//Implementerer funksjon
+procedure(myArray)				//Kaller funksjonen på arrayet
+Lengde: sizeof(myArray)
+
+---------- VECTORS -----------------
+vector<int> myVector (3,100);
+myvector.erase (myvector.begin()+5);
+Lengde: myvector.size()
+Vector: alt settes til 0 med vector<baseType> myVector(length)
+
+---------- ITERATORER---------------
+//Hvis participants.size() == 0 vil begin() == end() og ingenting gjøres! Må if/else-s
+for (auto it = participants.begin(); it != participants.end(); it++)
+
+//Iterator: *it henter elementet fra det den itererer fra! 
+for (auto it = toBeErased.begin(); it != toBeErased.end(); it++) {
+	for (int i = 0; i < cannonballs.size(); i++) {
+		if (*it == cannonballs[i]) {
+			cannonballs.erase(cannonballs.begin() + i-1);
+		}
+	}
+}
+
+----------------- MISC ----------------
+I alle funksjoner som virker på en CString:
+	myCString[numberOfGrades] = '\0'; //For å sikre at den slutter med 0.
+
+
+----------------- Klasser ---------------
+An object is an instantiation of a class.
+Implementering av en class må ende med ;
+Man kan ikke kalle medlemsfunksjoner fra utenom definerte funksjoner, bruk main!
+this-> refererer til AKKURAT DENNE instanseringen av klassen
+Brukes ofte i kontruktøren, (*this(dot))
+birthday.output() er dot-operatoren og brukes på objekter
+DayofYear::output er scope resolution operator og brukes på klassen for å def funksjon
+Private members may be used in member function definitions but not elsewhere
+
+this->stæsj gjør at stæsj blir tolket som det stæsjet som klassen vi definerer har
+a = b = c; gjør: b = c, deretter a = b (= c), så a,b = c
+
+DETTE ER GULL!
+Suit Card::getSuit() { //Det foran er hhv [Returverdi] [klasse] [medlemsfunksjon] -rkm
+	return this->s;
+}
+VECTOR: vector<Card> cards;
+Cast int som den enum du vil ha for å lagre det som enum. (Suit)1 eller static_cast<Suit>(1) (OK?)
+
+Det er god praksis å markere medlemsfunksjonar som ikkje endrar objektet med const.
+
+------------- PEKERE ------------
+pointer er en addresse. Send pointer <=> send adresse
+double *p; //tallet *p på adressen p er initiert som double
+&variable gir deg addressen til variablen. p = &variable
+p1 er adressen, *p1 er verdien i adressen
+p1 = p2 gjør at addressen p1 blir p2
+*p1 = *p2 setter verdien som finnes på p1 til den som finnes på p2
+
+Pekere og dot-operator for å bruke medlemsfunksjoner på objekter:
+Card *myCard; //myCard er en peker som peker på verdien *myCard av type Card
+Rank stankRank = (*myCard).getRank(); //Parentes fordi dot går først
+	myCard->getRank() //funker også! Sender verdien på adressen myCard til getRank()
+Insane: Card card1;
+	(&card1)->getRank() //Her er card1 et objekt/en variabel mens getRank 
+	er en medlemsfunkksjon av klassen card.
+	&card1 er adressen til card1. -> sender verdien som befinner seg på adressen
+	til getRank()
+//Pekere er latterlig mer effektiveeeee!!!!!
+bool Blackjack::isAce(Card *myCard) {}
+!!! Funksjonen over tar inn en pointer selv om *myCard er verdien. Heri  fins forvirring
+
+int* intPointer1 og int *intPointer1 gjør det samme. C++ leser ikke mellomrom
+
+
+--------------------------------------------------------
+string line;
+getline(cin,line);
+cout << line;
+
+Operatorer overlagres akkurat som funksjoner defineres!!!!!!!!!!!!!!!
+Deklareres i header og implementeres i cpp-fila!
+
+<< tar inn både const char og string
+
+
+error C2662: fordi vi inni en const-funksjon kaller funksjoner som ikke er konst
+
+Klasseobjekter kan være både automatiske og dynamiske variabler (bruke new..)
+Default destructor lages av kompilator. 
+Vi må ha en destructor for å slette dynamiske objekter eller lister som lagrer de.
+Kopikonstruktør kopierer pekerens adresse og lager ikke egen adresse, den svikeren
+&operator = må overlagres som en medlemsoperator, og er helt vill!
+Tar inn rhs som en call-by-value SOM OPPRETTES AV KOPIKONSTRUTØØØØØR! VILT!
+stjeler pekeren til rhs og lar den dø.
+this er en peker! *this blir elementet
+Overlagre gjerne operatorer som medlemmer!
+sizeof() er kul og kommer på eksamen. Gir oss antall byte for en variabel
+
+Det skilles på String "" og char ''!!!!!!!!!
+
+MÅ IKKE bruke () etter default constructor. GJØR SLIK: Matrix newmatrix;
+
+if (! (i % 4)) { cout << endl; }
+if (i && !((i+1) % 4)) { cout << endl; }
+
+-----------Effektivitet---------
+Lagre/konkatenere lange strenger. Opprett en stringstream og legg til; 
+overfør deretter til string.
+for (auto& it : nextWord) //Kolon med iterator gir objekt, ikke peker
+{						//& for effektivitet
+	if (isalpha(it)) { cleanWord += it; }
+}
+ALLTID OPPRETT NYE VARIABLER: KJEMPEBILLIG!!!!!!!

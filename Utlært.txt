@@ -1,0 +1,25 @@
+
+Når vi bruker pekere må vi skille mellom å endre minneaddressen som pekeren henviser
+til, og innholdet som blir pekt på. For å endre innholdet som pekes på gjør man
+følgende:
+void foo(double *b){
+*b = 2.0;
+}
+For å endre minneaddressen som blir pekt på gjør man følgende:
+void foo(double *a, double *b){
+b = a;
+}
+
+http://www.cplusplus.com/reference/cstdio/printf/
+
+Scope: Objekter inni en for/while-løkke drepes for hver iterasjon!!!!!!!!!!!!!!
+dfMen kan man stille på variablen fra inni loopen uten å bruke peker? JA!!! :D
+	int a = 2;
+	for (int i = 0; i < 10; i++) {
+		a = i;
+	}
+	cout << a << endl;
+Altså: Ikke initier variabler inni for-løkker om du vil dem vel!
+Ulovlig å initiere variabler inni en switch
+
+enum, struct, class og enum struct er "overtyper" som skaper egne typer.

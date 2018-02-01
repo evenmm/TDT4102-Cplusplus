@@ -1,0 +1,81 @@
+#include <cstring>
+C-string
+char t1[] = "tekst"
+//oppretter en t[6] som inneholder 't', 'e', 'k', 's', 't', '\0' for å slutte
+eller char[10] = "tekst" //gir også fire blanke
+Tabeller kan ikke tilordnes tabeller ved '='
+strcpy(a, b) //kopierer b til a
+strncpy(a,b,3) //De tre første. setningen blir bare 3 lang! Den kutter resten
+Konkatenering: Skjøter
+strcat
+strcat(a,b,5)
+Søking:
+strchr(a,"x") //disse to finner pekere. Dvs skriver ut setningen fra og med første forekomst.
+strstr //Finner "abc"
+cplusplus 
+Safe versjoner, unikt for visual studio:
+strcpy_s
+strncpy_s
+#define MS_VS //Dette fikser kompatibilitet
+#ifdef MS_VS
+#else
+#endif
+
+"...........\"....\"......": \ gjør neste tegn ugyldig
+struct og class
+legge til 1 med c++ for bokstaver flytter deg nedover i alfabetet.
+2^10 = 1024
+
+ctrl+k gir deg nye tastemuligheter
+ctrl+c kommenterer ut, ctr+u uncomment
+
+const double PI = 3.1415;
+
+-|-|-|- Enumeration types-|-|-|-
+Symbolske verdier som har en avbildning i heltall og øker lesbarheten
+enum Color {BLACK, WHITE, GREEN, YELLOW, BLUE}
+Hvis enum kun er representert med navn blir det 0,1,2,3,4,...
+eller: enum Color {BLACK =0,wHITE = 50}
+Initialisering enum t1 = 
+Color c1 = BLUE //initierer en farge-enum c1 som er blue
+
+SAMMENSATTE DATATYpER
+Arrays: Flere verdier av samme typer				Array: Samme type
+sruct (Brukes i C) Samling av verdier som kan være av ulik type Struct: Ulike typer
+Struktur holder på f.eks fire elementer, aspekter av en student.Class: Funksjoner
+class (Brukes i C++) Kan ha funksjoner i tillegg
+
+struct Circle {
+	double radius;
+	Color color;
+}
+Init:
+Circle c1 = {5.1, BLACK};
+Circle c2 = {3.7, YELLOW);
+c1.radius = 5;
+c1.color = BLUE;
+
+struct-typer er ukjente for operatorer som * + - < > == 
+fikses senere vha overlagring. må definere hva "mindre enn" betyr: eks studienr
+
+Objektorientering
+objekter er klasser og kalles instanser
+har prosedural programmering i bunnen
+vi abstraherer til enkle funksjonskall og bryr oss ikke om å lære all finmekanikken bak
+
+class Circle{
+private:
+	double radius; //Kan ikke settes av ekstern kode
+public:
+	double area(); //kan hentes av annen kode
+	double circumference();
+// Gjerne:
+	void setRadius (double r);
+	double getRadius ();
+}
+objektorientert programmering er å dele opp funksjonaliteten i håndterbare medlemsfunksjoner
+
+call by
+*z, må bruke *z
+
+static tas vare på gjennom alle funksjoner og resetttes ikke til 0

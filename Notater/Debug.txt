@@ -1,0 +1,2 @@
+Debug -> Windows -> Autos
+!! Finnes først når man har startet debugger

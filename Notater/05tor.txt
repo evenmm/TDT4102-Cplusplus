@@ -1,0 +1,125 @@
+#include<vector>
+#include<array> 
+#include<algorithm>
+
+Klasser begynner med stor bokstav
+
+class CIrcle {
+private:
+	double radius;
+public:
+	void setRadius(double r); //Man må gå via funksjonene
+	double getRadius();
+Implementasjon:
+
+double Circle::getRadius() {
+	return radius;
+}
+
+En klasse er en instans, et standardeksempel.
+
+Instansering er å lage et individ av et klasse
+Initialisering må skje. Konsktruktører kalles automatisk ved instansering
+
+class CIrcle {
+private:
+	double radius;
+public:
+	//Konstruktør
+	Circle(double r);
+}
+
+//implementasjon av konstruktøren
+Circle::Circle(double r){
+	radius = r;
+}
+
+//Bruk
+Circle oneCircle(5);
+Circle anotherCircle = Circle(10) //Eksplisitt
+Circle c;
+Circle c2 = Circle();
+
+Konstruktør er en vanlig medlemsfunksjon, men med samme navn!
+Her er tre konstruktører, bruker overlagring:
+Circle();
+Circle(double r);
+Circle(double r, Color r);
+
+Kompilatoren lager automatisk en default-konstruktør.
+
+Boka s. 316 Circle c3() viser
+
+public:
+	//Konstruktør
+	Circle() {radius = r;}
+	Circle(double r) {radius = r;}
+	void setRadius(double r)
+//Her kan vi ha både implementering eller ta det senere
+
+-|-|-|- Initialiseringsliste
+MinKlasse::MinKlasse() : v1(), v2(), v3() {...}
+MinKlasse::MinKlasse(int x, int y, int z) : v1(x), v2(y), v3(z) {...}
+
+class Ring
+private
+	circle inner
+	circle outer
+public:
+	Ring(double o, double i)
+HER KOMMER EN KONSTRUKTØR MED INITIALISERINGSLISTE:
+Ring::Ring --slides
+
+Biblioteket <string>
+
+Dyp og grunn kopiering når man kopierer objekter inn i andre objekter
+
+_this->_ er en medlemsvariabel alle objekter har som peker til objektet (seg selv)
+Circle::Circle(double radius){
+	this->radius = radius;
+}
+
+-|-|-|-static -|-|-|-
+også evt konst
+!!!! Static er felles for alle klasseojekter!!!!!
+private: 
+	static int counter
+	double radius
+public:
+	static const double PI
+	
+initiering skjer ved instansering
+int circle::counter = 0;	//Kan brukes til å 
+const double CIrcle::PI = 3.14
+
+For medlemsfunksjoner (til klasser) kan vi bruke const for å spesifisere at funksjonen
+ikke endrer på noen av medlemsvariablene
+double getArea() const;
+
+-|-|-|-|-Vector-|-|-|-|- (Dynamiske tabeller/arrays)
+#include<vector>
+vector<int> myVector = {1,2,3} //Kan ha struct, class, double, bool (standard og klasse)
+myVector.push_back(4);
+for(int i = 0; i < myVector.size(); i++) {
+	cout << myVector[i] << endl;
+}
+
+//ALgDat nevnes
+
+-|-|-|-|- #include<array> -|-|-|-|-
+array<int> myArray = {1,2,3};
+myArray[3] = 100 //Kan printe 1,2,3,100
+
+verdier.insert(verdier.begin(2), 55.5)
+verdier.insert(verdier.end(), 66.6)
+
+verdier.erase(verdier.begin()+2)
+
+-|-|-|- Uryddig matrise -|-|-|-
+vector<vector<int>> matB(4, vector<int>(3));
+
+Her kommer en funksjon:
+vector<sample> calcStats() {
+
+
+Neste gang skal vi definere hva "mindre enn" betyr for en sirkel.

@@ -1,0 +1,66 @@
+Tekstfiler: bytes tolkes som tegn
+Binærfiler: bytes som kan være hva som helst, kan også være tekst. Kan slå opp på element
+nummer 100 f.eks.
+En fil er enheten av data som vi gis for å lese eller skrive til disk
+streams er objektet som gir oss funksjonene for å lese/skrive fra/til filer
+
+ifstream bygger på istream
+ofstream = out file stream
+ifstream og ofstream hører under fstream
+Åpning skjer på samme måte for begge: 
+ifstream.open("shalala.txt")
+The stream serves as a second name for the file
+
+Hvordan bruke strømmer:
+Include riktig bibliotek
+Deklarere variabler (objekter) av riktig type som håndterer strenger
+Klargjøre file ved open)=
+sjekke om alt er OK. fail()
+lese/skrive
+close()
+
+#include <fstream>
+ifstream input;
+input.open("input.txt")
+
+iostate
+eof() ved slutten av fila
+& er bitvis, && er booline
+fail() sier fra om open fungerte eller ikke
+
+Output blir ofte buffret, også for cout
+output.flush() flusher alt fra buffer til fil
+
+output.open("output.txt",ios::app) //flagger at vi kun kan skrive i slutten av fila
+Presisjon på slides.
+setw() setter bredden på utskrift!
+
+Filoversikt! .exe-filen finnes i... katalogen?
+Her havner også filer vi skriver til.
+Kan hempe tak i adresse manuelt, "\" blir "\\"!
+
+inputfile >> d;
+while (!inputfile.eof()) {
+cout << d << endl;
+inputfile >> d; //?
+}
+
+get() gir et tegn, getline() gir fram til '\n'
+getline returnerer referanse til første parameter
+
+sizeof() er kul og kommer på eksamen. Gir oss antall byte for en variabel
+binFil.seekp(100) //put-peker
+binFil.seekg(100) //get-peker
+
+(reinterpret_cast<char *>(&d), sizeof(d));
+
+--------------------------------MAPS---------------------
+Et veldig morsomt og praktisk objekt.
+(x,y) (first,second)
+Kan tenke på maps som en liten avbildning. Mapper noen x-punkter til en y
+OMG det skilles på "" streng og '' char!!!
+if (studMap.find(name) == studMap.end()) { //end() er en peker bak det siste elementet
+	cout << name << " is not in map." << endl;
+}
+Rekursjon skjer.
+Stack: Push legger til og pop tar av

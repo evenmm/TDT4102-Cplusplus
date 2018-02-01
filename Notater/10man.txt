@@ -1,0 +1,76 @@
+-----Binærsøk
+Halverer søkemengden hver gang. Effektivitet log(2) n
+Rekursjon kan alltid gjøres med iterasjon i stedet
+Tilordningsoperator arves ikke
+
+-----ARV
+Klassehierarki er en intuitiv organisering av konsepter
+Relasjonen mellom nivåene kalles i oo-programmering for arv
+
+Utvide hver enkelt: 
+Legge til nye variabler etc
+Eller spesialisere/redefinere felles metoder, f. eks. toString()
+------Redefinering:
+subklasses implementasjon blir default, overklassen kan kalles: Person::toString()
+
+
+Superklasse med tilhørende subklasser
+Baseklasse med tilhørende utledete klasser
+Generalisering --> Spesialisering
+Foreldre og barn
+
+--------syntaks:
+
+class DerivedType : public BaseType{};
+class Student: public Person {};
+//Vanlig å ha en funksjon som skriver ut objektet som streng:
+string toString() const;
+
+Se på objektet teacher som en boks med en Person-boks inni
+------Arving fra flere klasser:
+Kan skille p::name og q::name
+
+-----Upcasting
+En variabel av en subtype kan brukes der det forventes denne subtypen eller supertypen
+Kan bruke en Student som en Person der koden forventer en Person!
+---Upcasting:
+Teacher t;
+Person p = t; //p mister da Teacher-spesifikke egenskaper
+Kan dermed bruke Person-funksjoner på liste av forskjellige typer personer
+
+Teacher *t = new Teacher(); //t->toString() printer en teacher
+Person *pt = t; //pt->toString() printer en person
+
+public/private/protected
+protected: mellomting! Subklasser kan aksessere protected i superklassen, eksterne ikke
+Konstruktører og dekonstruktører arves ikke men kan brukes med : !
+Destruktører: Implementer delete() av variable som er spesifikke for subklassen, og så 
+kalles automatisk i slutten av destruktøren.
+
+virtual string toString() const;
+//Bruker den varianten som er lengst ned i hierarkiet
+
+-----UML: Inufied Modeling Language-----
+Boks-og struktyrsystem. Grafisk for å modellere løsninger
+Notasjon:
++ betyr public
+- betyr private
+# betyr protected
++toString(): string
+
+-----STD::set<string> 
+Greia er at vi kun legger til ting i et sett hvis det ikke er noe der fra før
+//I've been everywhere Kattis
+int T;
+cin << T;
+while (T-- > 0) {
+int visits;
+set<string> cityNames;
+cin << visits;
+while (visits-- > 0) {
+string s;
+cin >> s;
+cityNames.insert(s); 
+}
+cout << cityNames.size() << endl;
+}

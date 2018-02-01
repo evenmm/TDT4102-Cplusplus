@@ -1,0 +1,25 @@
+-----------Polymorfi------- 
+Virtuelle funksjoner (sen/dynamisk binding)
+Versjonen som kjøres bestemmes ved kjøretid (kontra kompileringstid)
+Abstrakte klasser: Superklasse hvor minst en funksjon er deklarert men ikke implementert
+!! Kan ikke instanseres
+
+nøkkelord: virtual
+
+Virtuelle egenskaper arves av alle subklasser
+MEN inkluder ordet virtual i alle subklasser
+
+Abstrakte klasser:
+virtual string toString() = 0;
+Kompilering går bra med kall av funksjonen uten implementasjon
+Kan bare brukes med pekere
+
+	virtual destructor
+Klasser som brukes som superklasse i et hierarki bør vanligvis ha destruktor 
+deklarert som virtuell, for å la de lokale underklassene rydde opp selv
+
+Upcasting (Ikke gjør downcasting)
+supertypevariabel = subtypevariabel
+
+
+EKSEMPEL NYTTIG: bruke lengden av en ting som opprettes underveis i kjøring, f. eks. antall objekter som tegnes

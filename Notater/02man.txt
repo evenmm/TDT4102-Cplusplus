@@ -1,0 +1,86 @@
+operatorer og operander
+operasjoner utføres etter prioritet, parenteser bestemmer
+Tabell over prioritet på s. 81-82.
+Gange og dele før addere, deretter venstre mot høyre
+
+double y = 17/5.0 //Her gjøres 17 om til flyt
+double y = static_cast<double>(17)/5
+MASKINER RUNDER NEDOVER: int x = 2.9
+
+a++ betyr a = a+1 //Inkrementering
+a-- betyr a = a-1
+a+=2 betyr a = a+2
+
+/* Kommentar
+over
+flere
+linjer
+*/
+
+#include <iostream>
+std::cout //Fra standardbiblioteket: cout
+std::cin
+
+Eller "using namespace std;" i starten av programmet
+
+<< sender mot venstre
+>> henter
+
+bool funn = true
+Sammenligning < > <= >= == !=		Tabeller
+&& og         || eller       ! ikke 
+
+Short circuit-evaluering:
+usant OG etellerannet //Her vil ikke etellerannet tre i kraft. Her kan det være tilordninger som ikke gjøres! :)
+
+if (x > y) {
+	largest = x
+	cout << largest 
+}
+
+-|-|-|-|-LØKKER-|-|-|-|-|-|-
+3 typer i C++
+while(){...} 
+do{...}while() Gjør først, tester etterpå.
+for(){...}
+
+int teller = 0
+do{
+	std::cout << "Hei"
+	teller++
+	while(teller<3)
+}>_-???
+
+for (int i = 0; i < 10; i++)
+
+-|-|-|-|-KATTIS-|-|-|-|-
+Progkonkurranse der vi må fikse rankingen
+Alle programmer må returnere 0
+
+int main(){
+	int lines;
+	cin <<lines
+	for (int i = 0;i < lines; i++) {
+		int num = 0;
+		cin >> num;
+		if ((num % 2) == 0)
+			cout << num <<" is even\n";
+		else
+<			cout << num << " is odd\n";
+} 
+}
+
+-|-|-|-SWITCH-setningen-|-|-|-|-
+switch ()
+	a
+		break (uten break går vi videre nedover)
+	b
+	c
+
+Nøstede løkker
+
+Deklarasjon/Funksjonsprototype
+Integrasjon - den faktiske koden som utføres
+
+Hver variabel har sitt "Scope", altså et gyldighetsområde, som slutter når løkka slutter
+

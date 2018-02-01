@@ -1,0 +1,166 @@
+-- DYNAMISKE VARIABLE --- (kontra automatiske)
+Dynamisk minne: new og delete
+Destruktør
+Kopi-konstruktør
+Tilordningsoperatoren =
+Iteratorer og vector
+
+Automatiske (vanlige) variable: Vet hvor mye plass de trenger, scope bestemmer levetid
+Forutsigbart minnebehov ved gitt antall variabler og arrays med fast størrelse
+
+Dynamisk minne: Størrelse bestemmes ved kjøring
+(Vector er grensesnitt av dette)
+Må selv bestemme nar de OPPRETTES og FRIGJØRES
+Dynamiske variabler overlever scope. Se DynVarDemo.cpp!
+Programmer med minnelekkasje legger igjen "grums" i maskinen (eks firefox?)
+Lenkede lister: objekt med info som slutter med adresse til ny minneblokk! Peker = 8 byte
+ Siste slutter med nullpeker
+Trær
+
+Repetisjon pekere:
+int *p //p peker på en int *P
+int a = 10
+p = &a
+//Dereferere: Skrive *P //"Hent det som ligger på minneadresesen som er lagret i pekeren
+*P = 42
+Navnet til en array er en peker til første element!!!!!!!!!!
+
+int arr[10] = {}; /10 elementer addressert 0,...,9
+for (int *P = arr; p < &arr[10]; p++) { cout << *P << endl; }
+
+-----new------
+double *p1 = new double(5.0); //Samme under:
+double *p3(new double(5.0));
+double *p2;
+p2 = new double(10.0);
+
+----delete----
+frigjør minnet allokert med new
+while (true) {
+double *D = new double(1.0);
+kalkuler(*d);
+delete d; (Spiser masse minne uten denne)
+}
+
+----nullptr---- //Lærebok s 465
+int *p = nullptr;
+Når en peker har pekt på noe som er slettet, kan man 
+"jorde" rekken ved å sette de ntil nullptr
+
+----new[]----
+uten denne må størrelse vites FØR KOMPILERING!
+inn size = 0;
+cout << "Hvr mange tall?";
+cin >> size;
+int *arr = new int[size];
+
+delete [] arr; //delete vet hvor stort elementet er
+arr = nullptr;
+//Funker fordi memory allocator vet hvor mye den har gitt bort
+
+----Flerdimensjonale dynamiske array----
+Hittil kun 1D
+Må organiseres selv vha pekere
+
+int **a = new int*[ROWS];
+
+for (int i = 0; i < ROWS; i++) {
+	a[i] = new int[COLUMNS];
+	}
+
+//og da funker a[i][j] = 42;
+Bakdeler: Omfattende allokering og frigjøring (veldig manuelt med gritty pekeration)
+	  Minnet blir ikke sammenhengende (se eks DynVarDemo.cpp)
+STRUKTUR: Peker til array av pekere som hver peker til et array
+
+----1D-array som 2D-array!"----
+1. Deklarerer array som pekere
+2. Alloker array med størrelse rows*columns
+3. Regn om fra 2D-indeks til 1D-indeks
++: Enkel allokering og frigjøring
+-: Tungvint addressering, må regne ut adressen selv
+	a[i * ROWS + j] = 42;
+//Kan pakkes inn i funksjoner for å øke lesbarheten, men vil gå ut over ytelse
+
+----typedef----
+typedef int *intPtr; //Definerer egen type intPtr som peker til int
+
+typedef Student* studentPtr;
+
+ptr = new int size //Definert inni funksjon
+//Kan bruke size senere. Økt behov for å rydde opp:
+delete[] arr;
+arr = nullptr;
+
+----assert----?
+
+----destruktør----
+må kalle delete på dynamiske medlemsvariabler før selve objektet frigjøres
+!!Deklareres som konstruktører, men med prefikset ~
+Array::~Array() {
+	delete [] arr;
+}
+	Les syntaks!
+Automatiske variabler destrueres automatisk når vi går ut av scope
+
+----kopiering og tilordning----
+Array a(199)
+Array b(a)
+
+Array c = a
+
+----Shallow copy----
+Kun overflaten kopieres, dvs 
+Array b = a; //gjør b.size = a.size //og b.arr = a.arr
+Minnelekkasje
+AV OG TIL ØNSKER VI ET NYTT, IDENTISK KOPI AV OBJEKTET
+----Deep copy----
+----Kopi-konstruktør:
+Konstruktør med typen selv som eneste parameter: Type::Type(const Type& other);
+//Default for denne er grunn kopi, alternativt mp vi implementere dyp kopi
+//Da må vi kopiere over ett og et element i for-løkke
+
+----Tilsvarende for tilordningsoperatoren----
+Må overlagre operator=
+
+
+----Copy-and-swap:
+Array& Array::operator=(Array rhs) {
+std::swap(size, rhs.size);
+std::(arr, rhs.arr);
+return *this;
+}
+
+----Forhindre kopiering og tilordning:
+=delete etter deklarasjonen
+
+----DE TRE STORE----
+Destruktør, kopikonstruktør, tilordningsoperator. Trenger du en, trenger du alle!
+
+----Rekursive datatyper
+Peke på første objekt som slutter ved å peke til et nytt objekt. 
+Klasser kan ha medlemsvariabler av samme type som seg selv, MEN BARE HVIS DE ER PEKERE!
+Ellers ville vi ved kompilering få uendelig rekursivt udefinerte klasser
+//Må bruke forward deklarasjon:
+
+class Person;
+
+class Person {private: Person *father; }
+
+--------EKSAMENSSPØRSMÅL--------
+
+--------------------Intro av CMB:
+Kattis er veldig bra, CMB måler energieffektivitet og er ment for å rette global
+programmeringstrening av dummy på nett mot noe praktisk (?)
+
+setlocale(LC_ALL, "norwegian");
+
+----Bruke funksjon som parameter----
+bool bedreEnn(Stud *a, Stud *b) {
+	return ((a->Kar) > (b->Kar));
+}
+
+--------Vector og iterator----
+auto it = studenter.begin(); //Kap 19
+while (it != studenter.end() && *it != sPtr) { it++; }
+studenter.erase(it);

@@ -1,0 +1,30 @@
+-|-|-|-|Overlagring-|-|-|-|-
+STL = standard template library, parametriserte typer
+Vector, queue, stack, priority queue
+
+vector<double> verdier = {0.0, 22,2 };
+#include<algorithm>
+
+Operatorer er ikke så ulike funksjoner:
+2 +3 kunne ha vært skrevet som +(2, 3)
+
+struct Date {
+	int year;
+	int month;
+	int day;
+}
+
+bool operator == (Date d1, Date d2){
+	return ((d1.year == d2.year) && (d1.month == d2.month) && (d1.day == d2.day));
+//Vi haroverlagret == for datatypen struct Date
+
+Noen operatorer endrer vi også på variabelen
+++a returnerer verdien til a etter inkrementering
+
+Bruke call-by-reference men ønsker ikke å endre bildet. Da er vi sikre slik:
+bool operator < (const Date %d1, const Date &d2){}
+
+bool operator< (const, const)
+
+Prefix:  ++x inkrementerer x og gir den inkrementerte
+Postfix: x++ gir dummy-variablen "x+1"
